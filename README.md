@@ -77,8 +77,8 @@ pillow>=8.3.0
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/conditional-diffusion-mnist.git
-cd conditional-diffusion-mnist
+git clone https://github.com/mahanzavari/MNIST_Diffusion
+cd MNIST_Diffusion
 ```
 
 ### 2. Create Virtual Environment
@@ -205,17 +205,21 @@ The core model is a U-Net architecture with the following components:
 
 Implements the mathematical framework of diffusion models:
 
-#### Forward Process (q)
-```
-x_t = √(ᾱ_t) * x_0 + √(1 - ᾱ_t) * ε
-```
-Where ε ~ N(0, I) is Gaussian noise
+#### Forward Process ($q$)
 
-#### Reverse Process (p)
-```
-x_{t-1} = μ_θ(x_t, t) + σ_t * z
-```
-Where μ_θ is predicted by the neural network
+$$
+x_t = \sqrt{\bar{\alpha}_t} \cdot x_0 + \sqrt{1 - \bar{\alpha}_t} \cdot \varepsilon
+$$
+
+Where $\varepsilon \sim \mathcal{N}(0, I)$ is Gaussian noise.
+
+#### Reverse Process ($p$)
+
+$$
+x_{t-1} = \mu_\theta(x_t, t) + \sigma_t \cdot z
+$$
+
+Where $\mu_\theta$ is predicted by the neural network and $z \sim \mathcal{N}(0, I)$.
 
 ## 📚 Training Process
 
@@ -226,9 +230,10 @@ Where μ_θ is predicted by the neural network
 
 ### 2. **Loss Function**
 Simple L2 loss between predicted and actual noise:
-```python
-loss = MSE(ε_predicted, ε_actual)
-```
+
+$$
+\mathcal{L} = \mathrm{MSE}(\varepsilon_{\text{predicted}}, \varepsilon_{\text{actual}})
+$$
 
 ### 3. **Training Loop**
 ```python
@@ -440,21 +445,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Author**: Mahan Zavari
 - **Email**: mahanzavari@gmail.com, mahanzavari@aut.ac.ir
 - **GitHub**: [@mahanzavari](https://github.com/mahanzavari)
-- **Project Link**: [https://github.com/mahanzavari/conditional-diffusion-mnist](https://github.com/yourusername/conditional-diffusion-mnist)
+- **Project Link**: [https://github.com/mahanzavari/MNIST_Diffusion](https://github.com/mahanzavari/MNIST_Diffusion)
 
 ---
 
 ⭐ **If you found this project helpful, please consider giving it a star!** ⭐
-
-## 🔄 Updates & Changelog
-
-### v1.0.0 (Current)
-- ✅ Initial release
-- ✅ Complete DDPM implementation
-- ✅ Conditional generation
-- ✅ Interactive widgets
-- ✅ Architecture visualization
-- ✅ Comprehensive documentation
 
 ### Planned Features
 - 🔄 Classifier-free guidance
